@@ -1,6 +1,6 @@
 body {
 	margin-left: auto;
-  margin-right: auto;
+  	margin-right: auto;
 	background-color: #625D5D;
 	text-align: center;
 }
@@ -21,9 +21,11 @@ table {
 }
 
 table#tictactoe td {
-    width: 10em;
-    height: 10em;
+    width: 175px;
+    height: 175px;
    	text-align:center;
+   	margin: 0;
+   	padding: 0;
 }
 
 td#square0, td#square1, td#square2, td#square3, td#square4, td#square5 {

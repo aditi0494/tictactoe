@@ -1,5 +1,6 @@
 $(document).ready(function() {
-
-	$('h1').css('border','3px solid red')
+	$('#tictactoe td').one('click',function() {
+		$(this).append("x").css('font-family','PT Sans Narrow').css('font-size','90px').css('color','#CC2EFA')	
+	})
 
 })
