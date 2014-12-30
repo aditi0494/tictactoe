@@ -3,6 +3,8 @@ body {
   	margin-right: auto;
 	background-color: #625D5D;
 	text-align: center;
+	height: 100%;
+	width: 100%;
 }
 
 h1 {
@@ -10,22 +12,153 @@ h1 {
 	font-family: 'PT Sans Narrow', sans-serif;
 	font-size: 60px;
 	font-weight: 300;
+	border-bottom: 1px solid;
+	position: relative;
+	top: -2200px;
 }
 
 h2 {
-	color: #D1D0CE;
+	color: #625D5D;
 	font-family: 'PT Sans Narrow', sans-serif;
 	font-size: 40px;
 	font-weight: 300;
-	border-bottom: 1px solid;
-	padding-bottom: 10px;
+	position: relative;
+	top: 25px;
+}
+
+#greeting {
+	position: relative;
+	background: rgb(209,208,206);
+	background: rgba(209,208,206,0.7);
+	height: 400px;
+	width: 100%;
+	z-index: 100;
+	top: 175px;
+}
+
+.player1InformationEnabled {
+	position: relative;
+	background: rgb(209,208,206);
+	background: rgba(209,208,206,0.7);
+	height: 400px;
+	width: 100%;
+	z-index: 100;
+	top: -260px;
+}
+
+.player2InformationEnabled {
+	position: relative;
+	background: rgb(209,208,206);
+	background: rgba(209,208,206,0.7);
+	height: 400px;
+	width: 100%;
+	z-index: 100;
+	top: -1125px;
+}
+
+.player1ColorEnabled {
+	position: relative;
+	background: rgb(209,208,206);
+	background: rgba(209,208,206,0.7);
+	height: 400px;
+	width: 100%;
+	z-index: 100;
+	top: -690px;
+}
+
+#orange {
+	position: relative;
+	height: 100px;
+	width: 100px;
+	left: 200px;
+	top: 50px;
+	background-color: #FE9A2E;
+}
+
+#pink {
+	position: relative;
+	height: 100px;
+	width: 100px;
+	left: 350px;
+	top: -50px;
+	background-color: #FA58AC;
+}
+
+#green {
+	position: relative;
+	height: 100px;
+	width: 100px;
+	left: 500px;
+	top: -150px;
+	background-color: #74DF00;
+}
+
+#purple {
+	position: relative;
+	height: 100px;
+	width: 100px;
+	left: 650px;
+	top: -250px;
+	background-color: #CC2EFA;
+}
+
+#blue {
+	position: relative;
+	height: 100px;
+	width: 100px;
+	left: 800px;
+	top: -350px;
+	background-color: #58ACFA;
+}
+
+#player1ColorSubmit {
+	top: -300px;
+}
+
+#player2ColorSubmit {
+	top: -300px;
+}
+
+#playerColorReset {
+	top: -300px;
+}
+
+.player2ColorEnabled {
+	position: relative;
+	background: rgb(209,208,206);
+	background: rgba(209,208,206,0.7);
+	height: 400px;
+	width: 100%;
+	z-index: 100;
+	top: -1560px;
+}
+
+.buttonSubmit {
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 30px;
+	font-color: #625D5D;
+	position: relative;
+	top: 25px;
+}
+
+.inputBox {
+	height: 40px;
+	width: 800px;
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 30px;
+}
+
+.disabled {
+	visibility: hidden;
 }
 
 table {
 	margin-left: auto;
 	margin-right: auto;
 	padding-bottom: 30px;
-	padding-top: 30px;
+	padding-top: 0px;
+	position: relative;
+	top: -2200px;
 }
 
 table#tictactoe td {
@@ -44,8 +177,10 @@ td#square0, td#square3, td#square6, td#square1, td#square4, td#square7 {
     border-right: 3px solid #D1D0CE;
 }
 
-button {
+#reset {
 	font-family: 'PT Sans Narrow', sans-serif;
-	font-size: 20px;
+	font-size: 30px;
 	font-color: #625D5D;
+	position: relative;
+	top: -2200px;
 }
