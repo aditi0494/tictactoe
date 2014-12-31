@@ -10,13 +10,14 @@ $(document).ready(function() {
 	};
 
 /*hides all of the info divs*/
+	$('#winAlert').addClass('disabled');
 	$('#player1Information').addClass('disabled');
 	$('#player2Information').addClass('disabled');
 	$('#player1Color').addClass('disabled');
 	$('#player2Color').addClass('disabled');
 
 /*gets all of the player information; still needs to store the values*/
-	var getInfo = function () {
+	var getPlayer1Info = function () {
 
 		$('#player1Information').removeClass('disabled');
 
@@ -29,7 +30,6 @@ $(document).ready(function() {
 
 		$('.colorPlayer1').click(function() {
 			$(this).css({"border-color": "#000000","border-width":"3px","border-style":"solid"});
-/*the following currently doesn't work (first, it just returns the id, which is the name of the color (i.e. "green"), also it doesn't store the variable)*/
 			player1.color = $(this).css('background-color'); 
 		});
 
@@ -39,8 +39,14 @@ $(document).ready(function() {
 
 		$('#player1ColorSubmit').click(function() {
 			$('#player1Color').addClass('disabled');
-			$('#player2Information').removeClass('disabled');
 			$('.colorPlayer1').css('border', 'none');
+		});
+	};
+
+	var getPlayer2Info = function() {
+
+		$('#player1ColorSubmit').click(function() {
+			$('#player2Information').removeClass('disabled');
 		});
 
 		$('#player2NameSubmit').click(function() {
@@ -66,7 +72,6 @@ $(document).ready(function() {
 		});
 	};
 
-
 /*sees if a number is even; used to check whose turn it isfor two player*/
 	var isEven = function(number) {
 		return (number % 2);
@@ -75,12 +80,14 @@ $(document).ready(function() {
 /*checks to see if three cells are "X"s or "O"s and returns accordingly*/
 	var checkRows = function(a,b,c) {
 		if (a == "X" && b == "X" && c == "X") {
-			alert(player1.name + " wins!");
+			$('#winAlert').removeClass('disabled');
+			$('#whoWon').html(player1.name + " wins!")
 			$('#tictactoe td').off('click');
 			return 1;
 		}
 		else if (a == "O" && b== "O" && c == "O") {
-			alert(player2.name + " wins!");
+			$('#winAlert').removeClass('disabled');
+			$('#whoWon').html(player2.name + " wins!")
 			$('#tictactoe td').off('click');
 			return -1;
 		}
@@ -126,7 +133,9 @@ $(document).ready(function() {
 		win = checkWin();
 
 		if (win == 0 && number == 9) {
-			alert("it's a tie!");
+			$('#winAlert').removeClass('disabled');
+			$('#whoWon').html("it's a tie!")
+			$('#tictactoe td').off('click');
 			return 0;
 		}
 	};
@@ -139,7 +148,8 @@ $(document).ready(function() {
 		$('#greeting').addClass('disabled');
 
 /*gets all of the player information*/
-		getInfo();
+		getPlayer1Info();
+		getPlayer2Info();
 
 		$('#tictactoe td').on('click',function() {
 			if (isEven(turn) === 0) {
@@ -161,6 +171,9 @@ $(document).ready(function() {
 		var clickedItem = [];
 		
 		$('#greeting').addClass('disabled');
+
+		getPlayer1Info();
+		var player2 = new Player("Computer",'black');
 
 /*this is broken: without the if statment, it will put "O" in a random location, but it will override an exisiting letter often*/
 		$('#tictactoe td').one('click',function() {
@@ -184,7 +197,7 @@ $(document).ready(function() {
 				
 				$('#' + square).off('click');
 				if (position == turn) {
-					$('#' + square).text("O").css('font-family','PT Sans Narrow').css('font-size','125px').css('color','#74DF00');
+					$('#' + square).text("O").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player2.color);
 					return 0
 				}
 				else {
@@ -193,7 +206,7 @@ $(document).ready(function() {
 
 			};
 
-			$(this).text("X").css('font-family','PT Sans Narrow').css('font-size','125px').css('color','#CC2EFA');
+			$(this).text("X").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player1.color);
 			var success = 0;
 
 			lastClicked = $(this).attr('id');
@@ -213,6 +226,7 @@ $(document).ready(function() {
 	
 /*resets the board when the new game button is clicked*/
 	$('#reset').click(function() {
+		$('#winAlert').addClass('disabled');
 		$('#tictactoe td').html("");
 		$('#greeting').removeClass('disabled');
 	});

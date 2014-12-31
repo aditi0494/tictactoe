@@ -181,6 +181,20 @@ td#square0, td#square3, td#square6, td#square1, td#square4, td#square7 {
     border-right: 3px solid #D1D0CE;
 }
 
+#winAlert {
+	position: relative;
+	background: rgb(209,208,206);
+	background: rgba(209,208,206,0.7);
+	height: 400px;
+	width: 100%;
+	z-index: 100;
+	top: -2815px;
+}
+
+#whoWon {
+	font-size: 100px;
+}
+
 #reset {
 	font-family: 'PT Sans Narrow', sans-serif;
 	font-size: 30px;
