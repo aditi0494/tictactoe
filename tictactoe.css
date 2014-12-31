@@ -119,7 +119,11 @@ h2 {
 	top: -300px;
 }
 
-#playerColorReset {
+#player1ColorReset {
+	top: -300px;
+}
+
+#player2ColorReset {
 	top: -300px;
 }
 
