@@ -30,8 +30,7 @@ $(document).ready(function() {
 		$('.colorPlayer1').click(function() {
 			$(this).css({"border-color": "#000000","border-width":"3px","border-style":"solid"});
 /*the following currently doesn't work (first, it just returns the id, which is the name of the color (i.e. "green"), also it doesn't store the variable)*/
-			player1.color = $(this).attr('id');
-			return player1.color; 
+			player1.color = $(this).css('background-color'); 
 		});
 
 		$('#player1ColorReset').click(function() {
@@ -53,6 +52,7 @@ $(document).ready(function() {
 
 		$('.colorPlayer2').click(function() {
 			$(this).css({"border-color": "#000000","border-width":"3px","border-style":"solid"});
+			player2.color= $(this).css('background-color');
 		});
 
 
@@ -143,10 +143,10 @@ $(document).ready(function() {
 
 		$('#tictactoe td').on('click',function() {
 			if (isEven(turn) === 0) {
-				$(this).text("X").css('font-family','PT Sans Narrow').css('font-size','125px').css('color','player1.color');
+				$(this).text("X").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player1.color);
 			}
 			else if (isEven(turn) === 1) {
-				$(this).text("O").css('font-family','PT Sans Narrow').css('font-size','125px').css('color','player2.color');
+				$(this).text("O").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player2.color);
 			}
 			turn++;
 
