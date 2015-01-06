@@ -10,11 +10,11 @@ body {
 h1 {
 	color: #D1D0CE;
 	font-family: 'PT Sans Narrow', sans-serif;
-	font-size: 60px;
+	font-size: 100px;
 	font-weight: 300;
 	border-bottom: 1px solid;
 	position: relative;
-	top: -2200px;
+	top: -2225px;
 }
 
 h2 {
@@ -162,7 +162,7 @@ table {
 	padding-bottom: 30px;
 	padding-top: 0px;
 	position: relative;
-	top: -2200px;
+	top: -2255px;
 }
 
 table#tictactoe td {
@@ -188,11 +188,12 @@ td#square0, td#square3, td#square6, td#square1, td#square4, td#square7 {
 	height: 400px;
 	width: 100%;
 	z-index: 100;
-	top: -2815px;
+	top: -2920px;
 }
 
 #whoWon {
 	font-size: 100px;
+	top: 100px;
 }
 
 #reset {
@@ -200,5 +201,5 @@ td#square0, td#square3, td#square6, td#square1, td#square4, td#square7 {
 	font-size: 30px;
 	font-color: #625D5D;
 	position: relative;
-	top: -2200px;
+	top: -2255px;
 }

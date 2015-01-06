@@ -179,21 +179,58 @@ $(document).ready(function() {
 		$('#tictactoe td').one('click',function() {
 
 /*this just finds a square randomly to fix the animation; then will change so that it picks logically*/
-			var findSquare = function() {
-				var squareNumber = Math.floor(Math.random() * 8);
-				var square = 'square' + squareNumber
-				return square
+			var findSquare = function(a,b,c) {
+				if (a.innerHTML == "X" && b.innerHTML == "X") {
+					square = c;	
+				}
+				else if (b.innerHTML == "X" && c.innerHTML == "X") {
+					square = a;
+				}
+				else if (a.innerHTML == "X" && c.innerHTML == "X") {
+					square = b;
+				}
+				else if (a.innerHTML == "O" && b.innerHTML == "O") {
+					square = c;
+				}
+				else if (b.innerHTML == "O" && c.innerHTML == "O") {
+					square = a;
+				}
+				else if (a.innerHTML == "O" && c.innerHTML == "O") {
+					square = b;
+				}
 			};
 
 			var computerTurn = function() {
-				square = findSquare();
-				var squareID = $('#' + square);
-				var squareInside = squareID.html();
-				clickedItem.push(square);
-				var position = clickedItem.indexOf(square);
+				var square0 = document.getElementById("square0");
+				var square1 = document.getElementById("square1");
+				var square2 = document.getElementById("square2");
+				var square3 = document.getElementById("square3");
+				var square4 = document.getElementById("square4");
+				var square5 = document.getElementById("square5");
+				var square6 = document.getElementById("square6");
+				var square7 = document.getElementById("square7");
+				var square8 = document.getElementById("square8");
+
+				findSquare(square0,square1,square2);
+				findSquare(square3,square4,square5);
+				findSquare(square6,square7,square8);
+				findSquare(square0,square3,square6);
+				findSquare(square1,square4,square7);
+				findSquare(square2,square5,square8);
+				findSquare(square0,square4,square8);
+				findSquare(square2,square4,square6);
+			
+				square = $(square).attr('id');
+
+				if ((square.length) == 0) {
+					squareNumber = Math.floor(Math.random() * 8);
+					square = 'square' + squareNumber
+				}
 
 				console.log(square);
-				console.log(clickedItem);
+
+				clickedItem.push(square);
+				var position = clickedItem.indexOf(square);
 				
 				$('#' + square).off('click');
 				if (position == turn) {
@@ -213,14 +250,9 @@ $(document).ready(function() {
 			clickedItem.push(lastClicked);
 			turn++;
 
-			success = computerTurn();
-			if (success == 1) {
-				computerTurn();
-			}
+			computerTurn();
 			turn++;
 			checkAll(turn);
-			
-			console.log(success);
 		});
 	});
 	
