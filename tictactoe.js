@@ -1,13 +1,13 @@
 $(document).ready(function() {
 
+/*creating a class to store all of the player information*/
+	function Player(name, color) {
+		this.name = name;
+		this.color = color;
+	};
+
 	var player1 = new Player();
 	var player2 = new Player();
-
-/*creating a class to store all of the player information*/
-	function Player() {
-		this.name = "name";
-		this.color = "color";
-	};
 
 /*hides all of the info divs*/
 	$('#winAlert').addClass('disabled');
@@ -169,10 +169,11 @@ $(document).ready(function() {
 
 		var turn = 0;
 		var clickedItem = [];
+		console.log(clickedItem);
 		
 		$('#greeting').addClass('disabled');
 
-		getPlayer1Info();
+		/*getPlayer1Info();*/
 		var player2 = new Player("Computer",'black');
 
 /*this is broken: without the if statment, it will put "O" in a random location, but it will override an exisiting letter often*/
@@ -211,36 +212,31 @@ $(document).ready(function() {
 				var square7 = document.getElementById("square7");
 				var square8 = document.getElementById("square8");
 
-				findSquare(square0,square1,square2);
-				findSquare(square3,square4,square5);
-				findSquare(square6,square7,square8);
-				findSquare(square0,square3,square6);
-				findSquare(square1,square4,square7);
-				findSquare(square2,square5,square8);
-				findSquare(square0,square4,square8);
-				findSquare(square2,square4,square6);
-			
-				square = $(square).attr('id');
-
-				if ((square.length) == 0) {
+				if (turn === 1) {
 					squareNumber = Math.floor(Math.random() * 8);
 					square = 'square' + squareNumber
 				}
+				else {
+					findSquare(square0,square1,square2);
+					findSquare(square3,square4,square5);
+					findSquare(square6,square7,square8);
+					findSquare(square0,square3,square6);
+					findSquare(square1,square4,square7);
+					findSquare(square2,square5,square8);
+					findSquare(square0,square4,square8);
+					findSquare(square2,square4,square6);
 
+					square = $(square).attr('id');
+				}
+			
 				console.log(square);
 
 				clickedItem.push(square);
 				var position = clickedItem.indexOf(square);
+				console.log(position);
 				
 				$('#' + square).off('click');
-				if (position == turn) {
-					$('#' + square).text("O").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player2.color);
-					return 0
-				}
-				else {
-					return 1
-				}
-
+				$('#' + square).text("O").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player2.color);
 			};
 
 			$(this).text("X").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player1.color);
@@ -253,6 +249,8 @@ $(document).ready(function() {
 			computerTurn();
 			turn++;
 			checkAll(turn);
+
+			console.log(clickedItem)
 		});
 	});
 	
