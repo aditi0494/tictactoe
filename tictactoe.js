@@ -7,7 +7,7 @@ $(document).ready(function() {
 	};
 
 	var player1 = new Player();
-	var player2 = new Player();
+	var player2 = new Player("the computer",'black');
 
 /*hides all of the info divs*/
 	$('#winAlert').addClass('disabled');
@@ -168,36 +168,30 @@ $(document).ready(function() {
 	$('#onePlayer').click(function() {
 
 		var turn = 0;
-		var clickedItem = [];
-		console.log(clickedItem);
 		
 		$('#greeting').addClass('disabled');
+		getPlayer1Info();
 
-		/*getPlayer1Info();*/
-		var player2 = new Player("Computer",'black');
-
-/*this is broken: without the if statment, it will put "O" in a random location, but it will override an exisiting letter often*/
 		$('#tictactoe td').one('click',function() {
 
-/*this just finds a square randomly to fix the animation; then will change so that it picks logically*/
+/*this sees if the computer or the person is one away from winning*/
+			var computerWrite = function(notsquare) {
+				if (document.getElementById(notsquare).innerHTML.length === 0) {
+					$('#' + notsquare).off('click');
+					$('#' + notsquare).text("O").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player2.color);
+					return 0;
+				}
+			};
+
 			var findSquare = function(a,b,c) {
-				if (a.innerHTML == "X" && b.innerHTML == "X") {
-					square = c;	
+				if (a.innerHTML == "X" && b.innerHTML == "X" || a.innerHTML == "O" && b.innerHTML == "O") {
+					return computerWrite($(c).attr('id'));
 				}
-				else if (b.innerHTML == "X" && c.innerHTML == "X") {
-					square = a;
+				else if (b.innerHTML == "X" && c.innerHTML == "X" || b.innerHTML == "O" && c.innerHTML == "O") {
+					return computerWrite($(a).attr('id'));
 				}
-				else if (a.innerHTML == "X" && c.innerHTML == "X") {
-					square = b;
-				}
-				else if (a.innerHTML == "O" && b.innerHTML == "O") {
-					square = c;
-				}
-				else if (b.innerHTML == "O" && c.innerHTML == "O") {
-					square = a;
-				}
-				else if (a.innerHTML == "O" && c.innerHTML == "O") {
-					square = b;
+				else if (a.innerHTML == "X" && c.innerHTML == "X" || a.innerHTML == "O" && c.innerHTML == "O") {
+					return computerWrite($(b).attr('id'));
 				}
 			};
 
@@ -212,45 +206,42 @@ $(document).ready(function() {
 				var square7 = document.getElementById("square7");
 				var square8 = document.getElementById("square8");
 
-				if (turn === 1) {
-					squareNumber = Math.floor(Math.random() * 8);
-					square = 'square' + squareNumber
+/*this has the computer's first turn be random; and if it isn't the first turn, it finds the square to chose by seeing if it is one away from winning*/
+				try1 = findSquare(square0,square1,square2);
+				if (try1 !== 0) {
+					try2 = findSquare(square3,square4,square5);
+					if (try2 !== 0) {
+						try3 = findSquare(square6,square7,square8);
+						if (try3 !== 0) {
+							try4 = findSquare(square0,square3,square6);
+							if (try4 !== 0) {
+								try5 = findSquare(square1,square4,square7);
+								if (try5 !== 0) {
+									try6 = findSquare(square2,square5,square8);
+									if (try6 !== 0) {
+										try7 = findSquare(square0,square4,square8);
+										if (try7 !== 0) {
+											try8 = findSquare(square2,square4,square6);
+											if (try8 !== 0 ) {
+												squareNumber = Math.floor(Math.random() * 8);
+												square = 'square' + squareNumber
+												computerWrite(square)
+											}
+										}
+									}
+								}
+							}
+						}
+					}
 				}
-				else {
-					findSquare(square0,square1,square2);
-					findSquare(square3,square4,square5);
-					findSquare(square6,square7,square8);
-					findSquare(square0,square3,square6);
-					findSquare(square1,square4,square7);
-					findSquare(square2,square5,square8);
-					findSquare(square0,square4,square8);
-					findSquare(square2,square4,square6);
-
-					square = $(square).attr('id');
-				}
-			
-				console.log(square);
-
-				clickedItem.push(square);
-				var position = clickedItem.indexOf(square);
-				console.log(position);
-				
-				$('#' + square).off('click');
-				$('#' + square).text("O").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player2.color);
 			};
 
 			$(this).text("X").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player1.color);
-			var success = 0;
-
-			lastClicked = $(this).attr('id');
-			clickedItem.push(lastClicked);
 			turn++;
 
 			computerTurn();
 			turn++;
 			checkAll(turn);
-
-			console.log(clickedItem)
 		});
 	});
 	
