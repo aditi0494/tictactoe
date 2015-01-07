@@ -7,7 +7,7 @@ $(document).ready(function() {
 	};
 
 	var player1 = new Player();
-	var player2 = new Player("the computer",'black');
+	var player2 = new Player();
 
 /*hides all of the info divs*/
 	$('#winAlert').addClass('disabled');
@@ -171,6 +171,8 @@ $(document).ready(function() {
 		
 		$('#greeting').addClass('disabled');
 		getPlayer1Info();
+		player2.name = "the computer";
+		player2.color = "black";
 
 		$('#tictactoe td').one('click',function() {
 
@@ -238,6 +240,7 @@ $(document).ready(function() {
 
 			$(this).text("X").css('font-family','PT Sans Narrow').css('font-size','125px').css('color',player1.color);
 			turn++;
+			checkAll(turn);
 
 			computerTurn();
 			turn++;
